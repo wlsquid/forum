@@ -1,0 +1,4 @@
+Forum site tasks
+a.	Build views dashboards, profile, homepage, articles page, messages page, search
+b.	Design DB structure
+c.	Design Controllers
