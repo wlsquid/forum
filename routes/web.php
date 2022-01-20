@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Http\Controllers\ThreadController;
 use Inertia\Inertia;
 
 /*
