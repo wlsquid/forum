@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Http\Controllers\ThreadController;
+use App\Http\Controllers\ThreadController;
 use Inertia\Inertia;
 
 /*
@@ -16,9 +16,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/forum', function () {
-    return Inertia::render('Forum'); 
-})->name('forum');
+Route::get('/forum', [ThreadController::class, 'index'])->name('forum');
+
+Route::get('/forum/show', function () {
+    return Inertia::render('Thread');
+})->name('Show');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

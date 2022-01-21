@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ThreadController extends Controller
 {
@@ -13,7 +14,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Forum'); 
     }
 
     /**
@@ -23,7 +24,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
     /**
@@ -45,7 +46,7 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        //
+        return Inertia::render('Thread');
     }
 
     /**
