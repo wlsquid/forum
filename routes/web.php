@@ -21,6 +21,8 @@ Route::get('/forum', [ThreadController::class, 'index'])->name('forum');
 // create route
 Route::get('/forum/create-thread', [ThreadController::class, 'create'])->name('Create');
 
+Route::post('/forum', [ThreadController::class, 'store'])->name('Store');
+
 Route::get('/forum/show', function () {
     return Inertia::render('Thread');
 })->name('Show');
