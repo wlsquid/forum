@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Models\Thread;
 
 class ThreadController extends Controller
 {
@@ -24,7 +26,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Create');
+        return Inertia::render('CreateThread');
     }
 
     /**
@@ -37,8 +39,21 @@ class ThreadController extends Controller
     {
         $request->validate([
             'thread-title' => 'required',
-            'thread-body' => 'required',
+            'thread-post' => 'required',
         ]);
+
+        $user_id = Auth::id();
+
+        $thread = Thread::create([
+            "user_id" => $user_id,
+            "title" => $request->input('thread-post'),
+            "body" => $request->input('thread-post'),
+            "tag_category" => $request->input('thread-tag'),
+        ]);
+
+        $threadid = $thread->id();
+
+        return redirect('/forum/'.$threadid);
     }
 
     /**

@@ -19,7 +19,7 @@ use Inertia\Inertia;
 Route::get('/forum', [ThreadController::class, 'index'])->name('forum');
 
 // create route
-Route::get('/forum/create', [ThreadController::class, 'create'])->name('create a new thread');
+Route::get('/forum/create-thread', [ThreadController::class, 'create'])->name('Create');
 
 Route::get('/forum/show', function () {
     return Inertia::render('Thread');

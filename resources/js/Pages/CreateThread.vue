@@ -2,7 +2,7 @@
      <app-layout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Thread Name
+                Create Thread
             </h2>
         </template>
 
@@ -12,11 +12,11 @@
                 <!-- Form for creating forum post -->
                 <h1 class="text-lg">Create A Thread</h1>
                 <a href="#" title="Read the rules" class="text-sm mb-5">Be Sure to read the rules before posting</a> 
-                <form class="w-full flex flex-col items-start" action="/forum" method="POST">
-                <label for="thread-title">Thread Title</label>
-                <input type="text" name="thread-title" placeholder="Write your title here" class="py-4 px-3 mb-4 w-full rounded-md shadow-inner focus:shadow-sm">
+                <form class="w-full flex flex-col items-start" @submit.prevent="threadForm.post('/forum')">
+                <label for="thread-title" >Thread Title</label>
+                <input type="text" name="thread-title" placeholder="Write your title here" class="py-4 px-3 mb-4 w-full rounded-md shadow-inner focus:shadow-sm" v-model="form.thread_title">
                 <label for="thread-text">Thread Text</label>
-                <textarea type="text" name="thread-post" placeholder="What did you see in nature today..." class="py-4 px-3 mb-4 w-full min-h-[290px] rounded-md shadow-inner focus:shadow-sm" />
+                <textarea type="text" name="thread-post" v-model="form.thread_body" placeholder="What did you see in nature today..." class="py-4 px-3 mb-4 w-full min-h-[290px] rounded-md shadow-inner focus:shadow-sm" />
                 <select class="py-4 px-3 mb-4 rounded-md shadow-innerfocus shadow-sm min-w-[75px]" name="thread-tag" id="thread-tag">
                     <option value="Birds">Birds</option>
                     <option value="Marsupials">Marsupials</option>
@@ -31,16 +31,31 @@
         </div>
     </app-layout>
 </template>
+
 <script>
     import { defineComponent } from 'vue';
     import AppLayout from '@/Layouts/AppLayout.vue';
+    import { useForm } from '@inertiajs/inertia-vue3';
+
 export default defineComponent({
     components: {
         AppLayout,
     },
-    
     setup() {
-        
+        const threadForm = useForm({
+            thread_title: '',
+            thread_body: '',
+            thread_tag: '',
+        });
+
+
+    return { threadForm };
     },
+    methods: {
+        test() {
+            console.log(this.test);
+        }
+    },
+  
 })
 </script>
